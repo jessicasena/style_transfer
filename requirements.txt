@@ -1,5 +1,5 @@
 numpy
 Pillow
 flask
--f https://download.pytorch.org/whl/cpu/torch-1.8.1-cp39-cp39-manylinux2014_aarch64.whl
--f https://download.pytorch.org/whl/cpu/torchvision-0.9.1-cp39-cp39-manylinux2014_aarch64.whl
+https://download.pytorch.org/whl/cpu/torch-1.8.1-cp39-cp39-manylinux2014_aarch64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.9.1-cp39-cp39-manylinux2014_aarch64.whl
