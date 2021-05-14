@@ -1,10 +1,5 @@
 numpy
 Pillow
-six
-tensorboardX
 torch
 torchvision
-tqdm
-opencv-python
-imageio
 flask
