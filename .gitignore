@@ -4,3 +4,4 @@ output/*
 experiments/*
 logs/*
 __pycache__
+/test_app.py
