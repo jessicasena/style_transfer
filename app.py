@@ -25,7 +25,7 @@ def to_base64(img):
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def style_transfer():
     if request.method == 'POST':
         if 'content' and 'style' not in request.files:
@@ -41,7 +41,10 @@ def style_transfer():
         out_base64 = to_base64(out_img)
 
         return jsonify({'image': str(out_base64)})
-    return
+    return '''
+        <!doctype html>
+        <title>Make your own painting</title>
+        '''
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
