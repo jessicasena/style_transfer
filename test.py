@@ -39,7 +39,6 @@ def style_transfer(device, vgg, decoder, content, style, alpha=1.0,
 def stylize(content, style, preserve_color=False, alpha=1.0):
     vgg_model = 'models/vgg_normalised.pth'
     decoder_model = 'models/decoder_iter_160000.pth.tar'
-    output = ''
     content_size = 512
     style_size = 512
     crop = False
@@ -47,9 +46,6 @@ def stylize(content, style, preserve_color=False, alpha=1.0):
     start = time.time()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    output_dir = Path(output)
-    output_dir.mkdir(exist_ok=True, parents=True)
 
     decoder = net.decoder
     vgg = net.vgg
