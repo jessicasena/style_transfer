@@ -44,7 +44,8 @@ def style_transfer():
         artist = Monero()
         artist.load_model()
 
-        painting = artist.create_painting(content_img, style_img, preserve_color=preserve_color, alpha=alpha)
+        painting = artist.create_painting(content_img, style_img, preserve_color=preserve_color, alpha=alpha,
+                                          content_new_size=512, style_new_size=512,)
         out_base64 = to_base64(painting)
 
         return jsonify({'image': str(out_base64)})
