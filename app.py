@@ -2,7 +2,7 @@ from flask import Flask, flash, request, redirect, jsonify
 from PIL import Image
 from io import BytesIO
 import base64
-from style_transfer.core.monero import Monero
+from core.monero import Monero
 from distutils.util import strtobool
 
 
