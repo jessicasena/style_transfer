@@ -2,7 +2,7 @@ from flask import Flask, flash, request, redirect, jsonify
 from PIL import Image
 from io import BytesIO
 import base64
-from test import stylize
+from style_transfer.core.monero import Monero
 from distutils.util import strtobool
 
 
@@ -41,8 +41,11 @@ def style_transfer():
         content_img = from_base64(base64_content)
         style_img = from_base64(base64_style)
 
-        out_img = stylize(content_img, style_img, preserve_color, alpha)
-        out_base64 = to_base64(out_img)
+        artist = Monero()
+        artist.load_model()
+
+        painting = artist.create_painting(content_img, style_img, preserve_color=preserve_color, alpha=alpha)
+        out_base64 = to_base64(painting)
 
         return jsonify({'image': str(out_base64)})
     return '''
@@ -52,4 +55,4 @@ def style_transfer():
 
 
 if __name__ == '__main__':
-     app.run(debug=True)
+    app.run(debug=True)
