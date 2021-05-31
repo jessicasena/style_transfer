@@ -32,7 +32,7 @@ def style_transfer():
         json = request.json
         base64_content = json['content']
         base64_style = json['style']
-        p_c = json['preserve_color']
+        p_c = str(json['preserve_color'])
         preserve_color = strtobool(p_c)
         alpha = float(json['alpha'])
 
