@@ -29,14 +29,12 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def style_transfer():
     if request.method == 'POST':
-        if 'content' and 'style' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        base64_content = request.files['content'].read()
-        base64_style = request.files['style'].read()
-        p_c = request.files['preserve_color'].read()
-        preserve_color = strtobool(p_c.decode("utf-8"))
-        alpha = float(request.files['alpha'].read())
+        json = request.json
+        base64_content = json['content']
+        base64_style = json['style']
+        p_c = json['preserve_color']
+        preserve_color = strtobool(p_c)
+        alpha = float(json['alpha'])
 
         content_img = from_base64(base64_content)
         style_img = from_base64(base64_style)
