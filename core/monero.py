@@ -46,6 +46,7 @@ class Monero:
         content = content.to(self.device).unsqueeze(0)
         with torch.no_grad():
             output = self._style_transfer(content, style, alpha)
+            output = output.clamp(0, 1)
         output = output.cpu().clone().squeeze(0)
         image = transforms.ToPILImage()(output)
 
