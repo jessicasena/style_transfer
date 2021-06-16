@@ -35,6 +35,8 @@ def style_transfer():
         p_c = str(json['preserve_color'])
         preserve_color = strtobool(p_c)
         alpha = float(json['alpha'])
+        content_new_size = int(json['content_new_size'])
+        style_new_size = int(json['style_new_size'])
 
         content_img = from_base64(base64_content)
         style_img = from_base64(base64_style)
@@ -43,7 +45,7 @@ def style_transfer():
         artist.load_model()
 
         painting = artist.create_painting(content_img, style_img, preserve_color=preserve_color, alpha=alpha,
-                                          content_new_size=512, style_new_size=512,)
+                                          content_new_size=content_new_size, style_new_size=style_new_size)
         out_base64 = to_base64(painting)
 
         return jsonify({'image': str(out_base64)})
