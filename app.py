@@ -14,12 +14,12 @@ def from_base64(base64_str):
     return img
 
 
-def to_base64(img):
+def to_base64(img, format='JPEG'):
     im_file = BytesIO()
-    img.save(im_file, format="JPEG")
+    img.save(im_file, format=format)
     im_bytes = im_file.getvalue()
     im_b64 = base64.b64encode(im_bytes).decode()
-    data_uri = 'data:image/jpeg;base64,{}'.format(im_b64)
+    data_uri = 'data:image/{};base64,{}'.format(format.lower(), im_b64)
     return data_uri
 
 
@@ -46,7 +46,7 @@ def style_transfer():
 
         painting = artist.create_painting(content_img, style_img, preserve_color=preserve_color, alpha=alpha,
                                           content_new_size=content_new_size, style_new_size=style_new_size)
-        out_base64 = to_base64(painting)
+        out_base64 = to_base64(painting, 'png')
 
         return jsonify({'image': str(out_base64)})
     return '''
