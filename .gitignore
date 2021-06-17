@@ -6,3 +6,4 @@ logs/*
 __pycache__
 /test_app.py
 images/*
+/simple_run_monero.py
