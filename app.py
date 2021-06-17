@@ -26,19 +26,6 @@ def to_base64(img, format='JPEG'):
 app = Flask(__name__)
 
 
-@app.before_request
-def handle_chunking():
-    """
-    Sets the "wsgi.input_terminated" environment flag, thus enabling
-    Werkzeug to pass chunked requests as streams.  The gunicorn server
-    should set this, but it's not yet been implemented.
-    """
-
-    transfer_encoding = request.headers.get("Transfer-Encoding", None)
-    if transfer_encoding == u"chunked":
-        request.environ["wsgi.input_terminated"] = True
-
-
 @app.route('/', methods=['GET', 'POST'])
 def style_transfer():
     if request.method == 'POST':
